@@ -1,22 +1,49 @@
-<template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <img src="/static/v.png" alt="Vuetify.js" class="mb-5" />
-      </div>
-      <v-card>
-        <v-card-text>
-          <p>Welcome to the Webpack SSR template.</p>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications. For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>. If you have questions, please join the official <a href="https://gitter.im/vuetifyjs/Lobby" target="_blank" title="chat">gitter</a>. Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="primary" flat router to="/inspire">Continue</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
-</template>
+<v-layout row wrap>
+                <v-flex xs12 sm4 layout row>
+                  <v-flex layout column>
+                    <span class="body-2">CONTACT</span>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-home</v-icon>
+                      New York, NY 10012, US
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-envelope</v-icon>
+                      info@example.com
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-phone</v-icon>
+                      + 01 234 567 88
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-print</v-icon>
+                      + 01 234 567 89
+                    </div>
+                  </v-flex>
+
+                  <v-flex layout column>
+                    <span class="body-2">LOCATION</span>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-home</v-icon>
+                      New York, NY 10012, US
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-envelope</v-icon>
+                      info@example.com
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-phone</v-icon>
+                      + 01 234 567 88
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3">fas fa-print</v-icon>
+                      + 01 234 567 89
+                    </div>
+                  </v-flex>
+                </v-flex>
+
+                <v-flex xs12 layout column>
+                  <div>
+                    <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1367.6874301262965!2d-97.53190458987032!3d35.3976766274836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b213f36751c3bd%3A0x16ebd0c5507ca43e!2s6801+S+Western+Ave%2C+Oklahoma+City%2C+OK+73139!5e0!3m2!1sen!2sus!4v1525307246546" frameborder="0" style="border:0" allowfullscreen></iframe>
+                  </div>
+                </v-flex>
+              </v-layout>

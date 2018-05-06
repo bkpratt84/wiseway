@@ -5,8 +5,7 @@
       fixed
       class="white"
     >
-      <v-toolbar-title v-text="title" class="red--text"></v-toolbar-title>
-      <!-- <img src="static/logo_transparent.png" alt="The Wise Way Counseling" height="48"> -->
+      <v-toolbar-title v-text="title" class="red--text text-lighten-3 logo-font"></v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-toolbar-items class="hidden-sm-and-down">
@@ -16,117 +15,345 @@
         <v-btn @click="$vuetify.goTo('#providers', options)" flat>Our Providers</v-btn>
         <v-btn @click="$vuetify.goTo('#contact', options)" flat>Contact Info</v-btn>
         <v-btn flat>Therapist Login</v-btn>
-        </v-toolbar-items>
+      </v-toolbar-items>
 
-        <v-toolbar-items class="hidden-md-and-up">
-          <v-btn icon>
-            <v-icon>menu</v-icon>
-          </v-btn>
+      <v-toolbar-items class="hidden-md-and-up">
+        <v-btn icon>
+          <v-icon>menu</v-icon>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
-    <!-- <v-container>
-      <v-layout row wrap>
-        <v-flex xs12 md10 offset-md1> -->
-          <v-content>
-            <section id="home">
-              <v-parallax src="static/hero.jpeg" height="600">
-                <v-layout
-                  column
-                  align-center
-                  justify-center
-                  class="white--text"
-                >
-                  <h1 class="white--text mb-2 display-1 text-xs-center">Id nulla anim ex do pariatur. Cillum ut labore sunt deserunt sint sint ex qui exercitation. Fugiat minim magna eiusmod laboris incididunt incididunt do. Laborum dolor enim fugiat ad magna aute ad consectetur ea aute reprehenderit ut enim. Aute amet mollit officia aliquip officia.</h1>
-                  <!-- <img src="static/logo.jpg" alt="The Wise Way Counseling" height="200"> -->
-                </v-layout>
-              </v-parallax>
-            </section>
+    <v-content>
+      <section id="home">
+        <v-parallax src="static/zen_garden_01.jpg" height="600">
+          <v-layout
+            column
+            align-center
+            justify-center
+            class="white--text"
+            wrap
+          >
 
-            <section id="about">
-              <v-layout
-                column
-                wrap
-                class="my-5"
-                align-center
-              >
-                <v-flex xs12 sm4 class="my-3">
-                  <div class="text-xs-center">
-                    <h2 class="headline">About Us</h2>
-                    <span class="subheading">
-                      Cras facilisis mi vitae nunc 
-                    </span>
-                    <div style="height: 150px;"></div>
-                  </div>
+            <h1 class="white--text mb-2 display-2 logo-font">The Wise Way Counseling</h1>
+            <!-- <h1 class="white--text mb-2 display-2 text-xs-center logo-font-6">The Wise Way Counseling</h1> -->
+            <h1 class="white--text mb-2 display-1">Call {{ contactNumber }} to schedule an appointment!</h1>
+          </v-layout>
+        </v-parallax>
+      </section>
+
+      <section id="about">
+        <v-layout
+          column
+          wrap
+          class="my-3"
+          align-center
+        >
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap align-center>
+                <v-flex xs12 md10 offset-md1>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">About Us</div>
+                    </v-card-title>
+
+                    <v-card-text class="text-xs-center pb-0">
+                      <img src="static/logo.jpg" alt="The Wise Way Counseling" height="300">
+                    </v-card-text>
+
+                    <v-card-text>
+                      <h1>Our Mission</h1>
+                      <div class="subheading">
+                        It is the mission of The Wise Way Counseling to improve the lives of those in Oklahoma by providing complete mental health services designed 
+                        to enrich and improve the lives of children, youth, adults and families.
+                      </div>
+
+                      <div class="subheading mt-3">
+                        The Wise Way Counseling was established in 2017 to provide evidence based, high quality, professional services throughout the Oklahoma City 
+                        metro area. The Wise Way Counseling is home to a team of highly respected and trained mental health professionals.
+                      </div>
+
+                      <div class="subheading mt-3">
+                        Our team of professionals each have unique skill sets that are used to help meet the needs of each individual by offering a variety of therapeutic 
+                        services for all ages on an individual, couple, family, and group basis. Through counseling, individuals can enhance understanding of their own 
+                        emotions and feelings and how they react to those emotions and feelings. Individuals can also learn skills to cope with uncomfortable feelings, 
+                        as well as gain a better understanding of how to problem solve more effectively.
+                      </div>
+                    </v-card-text>
+                  </v-card>
                 </v-flex>
               </v-layout>
-            </section>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </section>
 
-            <section id="services">
-              <v-layout
-                column
-                wrap
-                class="my-5"
-                align-center
-              >
-                <v-flex xs12 sm4 class="my-3">
-                  <div class="text-xs-center">
-                    <h2 class="headline">Services Offered</h2>
-                    <span class="subheading">
-                      Cras facilisis mi vitae nunc 
-                    </span>
-                    <div style="height: 150px;"></div>
-                  </div>
+      <section id="services">
+        <v-layout
+          column
+          wrap
+          class="my-3 grey lighten-2"
+          align-center
+        >
+          <v-flex xs12 sm4 class="my-3 pt-4">
+            <div class="text-xs-center">
+              <h2 class="headline">Services Offered</h2>
+            </div>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap align-center>
+                <v-flex xs12 sm6>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-user</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Individual Counseling</div>
+                    </v-card-title>
+                    <v-card-text class="card-services">
+                      Individual Counseling is provided to consumers 3 years of age or older to address needs in multiple domains such as anxiety, 
+                      anger, behavior, trauma, depression, stress, divorce, abuse, death, grief, as well as much more. Individuals will gain a 
+                      better understanding of how to cope with a variety of emotions and feelings relating to these areas. Individual therapy is 
+                      offered 1-2 times per week, based on a needs assessment. 
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs12 md6>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-users</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline">Family Counseling</div>
+                    </v-card-title>
+                    <v-card-text class="card-services">
+                      Family Counseling is provided to consumers of all ages in need of constructing a more functional family system and to address 
+                      a multitude of needs relating to various family dynamics. Consumers participating in family counseling will gain a better 
+                      understanding of how working together can help improve everyday living, enhancing the quality of life. This service is offered 
+                      1-2 times per week, based on a needs assessment. 
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs12 md6>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-heart</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Marriage Counseling</div>
+                    </v-card-title>
+                    <v-card-text class="card-services">
+                      Marriage Counseling is provided to consumers experiencing difficulties or concerns within their marriage, affecting various areas 
+                      of life. Services will help couples recognize and resolve conflicts, improving their relationships. Pre-marital counseling services 
+                      are also provided to consumers at The Wise Way Counseling.
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs12 md6>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-hands</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Group Psychotherapy</div>
+                    </v-card-title>
+                    <v-card-text class="card-services">
+                      Group psychotherapy is a special form of therapy in which a small number of people meet together under the guidance of a profession-ally 
+                      trained therapist to help them-selves and one another. Group therapy helps people learn about them-selves and improve their interpersonal 
+                      relationships. It addresses feelings of isolation, depression or anxiety. And it helps people make significant changes so they feel better 
+                      about the quality of their lives. Additionally, group therapists can apply the principles of group to other set-tings and situations such 
+                      as businesses, schools and community organizations. 
+                    </v-card-text>
+                  </v-card>
                 </v-flex>
               </v-layout>
-            </section>
+            </v-container>
+          </v-flex>
 
-            <section id="providers">
-              <v-layout
-                column
-                wrap
-                class="my-5"
-                align-center
-              >
-                <v-flex xs12 sm4 class="my-3">
-                  <div class="text-xs-center">
-                    <h2 class="headline">Our Providers</h2>
-                    <span class="subheading">
-                      Cras facilisis mi vitae nunc 
-                    </span>
-                    <div style="height: 150px;"></div>
-                  </div>
+
+          <v-flex xs12 sm4 class="my-3">
+            <div class="text-xs-center">
+              <h2 class="headline">Additional Services Offered</h2>
+              <span class="subheading">
+                In addition to services described above, we also offer:
+              </span>
+            </div>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap align-center>
+                <v-flex xs12 sm3>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-eye</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">EMDR<br><br></div>
+                    </v-card-title>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs12 sm3>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-clipboard-list</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Psychiatric Evaluations</div>
+                    </v-card-title>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs12 sm3>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-sticky-note</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Psychological Evaluations</div>
+                    </v-card-title>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs12 sm3>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large color="red lighten-2">fa-band-aid</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Trauma Assessments</div>
+                    </v-card-title>
+                  </v-card>
                 </v-flex>
               </v-layout>
-            </section>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </section>
 
-            <section id="contact">
-              <v-layout
-                column
-                wrap
-                class="my-5"
-                align-center
-              >
-                <v-flex xs12 sm4 class="my-3">
-                  <div class="text-xs-center">
-                    <h2 class="headline">Contact Info</h2>
-                    <span class="subheading">
-                      Cras facilisis mi vitae nunc 
-                    </span>
-                    <div style="height: 150px;"></div>
-                  </div>
+      <section id="providers">
+        <v-layout
+          column
+          wrap
+          class="my-3"
+          align-center
+        >
+          <v-flex xs12>
+            <v-container grid-list-xl class="pt-1">
+              <v-layout row wrap align-center>
+                <v-flex xs12 md10 offset-md1>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Our Providers</div>
+                    </v-card-title>
+
+                    <v-card-text>
+                      <div class="subheading">
+                        At the Wise Way Counseling, we have many therapists with a variety of specialties, degrees, licenses, and experience. We provide 
+                        services to consumers in the OKC Metro as well as surrounding areas. Our team currently provides services in English and Spanish 
+                        at this time.   
+                      </div>
+
+                      <div class="subheading mt-3">
+                        The Wise Way Counseling is always seeking licensed mental health professionals, as well as candidates, to join our team. We have 
+                        Board Approved LPC Supervisors on site to provide supervision for candidates. If interested in a career with The Wise Way Counseling, 
+                        please contact Emily at <span class="blue--text">{{ contactNumber }}</span>. 
+                      </div>
+                    </v-card-text>
+                  </v-card>
                 </v-flex>
               </v-layout>
-            </section>
-          </v-content>
-        <!-- </v-flex>
-      </v-layout>
-    </v-container> -->
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </section>
+
+      <section id="contact">
+        <v-footer height="auto">
+          <v-card flat tile class="flex">
+            <v-card-title class="red lighten-2 white--text">
+              <strong class="subheading">Get connected with us on social networks!</strong>
+
+              <v-spacer></v-spacer>
+
+              <v-btn
+                v-for="icon in icons"
+                :key="icon"
+                icon
+                dark
+                class="mx-3"
+                :href="icon.url"
+                target="_blank"
+              >
+                <v-icon size="24px">{{ icon.icon }}</v-icon>
+              </v-btn>
+            </v-card-title>
+
+            <v-card-text class="grey lighten-3">
+              <v-layout wrap>
+                <v-flex xs12 sm4 class="my-3">
+                  <v-flex layout column>
+                    <span class="body-2">CONTACT</span>
+
+                    <div>
+                      <v-icon size="18px" class="mr-3" color="red lighten-2">fas fa-envelope</v-icon>
+                      emily@thewisewaycounseling.com
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3" color="red lighten-2">fas fa-phone</v-icon>
+                      {{ contactNumber }}
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3" color="grey lighten-3">fas fa-phone</v-icon>
+                      Call to schedule an appointment.
+                    </div>
+                  </v-flex>
+                </v-flex>
+
+                <v-flex xs12 sm4 class="my-3">
+                  <v-flex layout column>
+                    <span class="body-2">ADDRESS</span>
+
+                    <div>
+                      <v-icon size="18px" class="mr-3" color="red lighten-2">fas fa-map-marker-alt</v-icon>
+                      6801 South Western Avenue
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3" color="grey lighten-3">fas fa-map-marker-alt</v-icon>
+                      Suite 203 & 205
+                    </div>
+                    <div>
+                      <v-icon size="18px" class="mr-3" color="grey lighten-3">fas fa-map-marker-alt</v-icon>
+                      Oklahoma City, Oklahoma 73139
+                    </div>
+                  </v-flex>
+                </v-flex>
+
+                <v-flex xs12 mt-2>
+                  <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1367.6874301262965!2d-97.53190458987032!3d35.3976766274836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b213f36751c3bd%3A0x16ebd0c5507ca43e!2s6801+S+Western+Ave%2C+Oklahoma+City%2C+OK+73139!5e0!3m2!1sen!2sus!4v1525307246546" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+
+            <v-card-actions class="red lighten-2 justify-center">
+              &copy;2018 — <strong>{{ title }}</strong>
+            </v-card-actions>
+          </v-card>
+        </v-footer>
+      </section>
+
+    </v-content>
   </v-app>
 </template>
 
 <script>
-  import Trianglify from 'trianglify'
   import Meta from 'mixins/meta'
 
   export default {
@@ -139,15 +366,13 @@
           offset: -64,
           easing: 'easeInOutCubic'
         },
-        items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
-        ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
         title: 'The Wise Way Counseling',
-        bg1: true
+        contactNumber: '405-821-6447',
+        bg1: true,
+        icons: [ { icon: 'fab fa-facebook', url: 'http://www.facebook.com' } ]
       }
     },
 
@@ -158,6 +383,16 @@
 </script>
 
 <style>
+  #google-map {
+    height: 400px;
+    width: 100%;
+  }
 
+  .card-services {
+    min-height: 200px;
+  }
+
+  .logo-font {
+    font-family: 'Courgette', cursive;
+  }
 </style>
-
