@@ -29,6 +29,7 @@ module.exports = {
       'router': resolve('../router'),
       'static': resolve('../static'),
       'store': resolve('../store'),
+      //'@': path.resolve(__dirname, '../'),
       'vue$': 'vue/dist/vue.common.js'
     }
   },

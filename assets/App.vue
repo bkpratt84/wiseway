@@ -1,32 +1,11 @@
 <template>
   <v-app>
-    <v-toolbar
-      app
-      fixed
-      class="white"
-    >
-      <v-toolbar-title v-text="title" class="red--text text-lighten-3 logo-font"></v-toolbar-title>
-      <v-spacer></v-spacer>
-
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn @click="$vuetify.goTo('#home', options)" flat>Home</v-btn>
-        <v-btn @click="$vuetify.goTo('#about', options)" flat>About Us</v-btn>
-        <v-btn @click="$vuetify.goTo('#services', options)" flat>Services Offered</v-btn>
-        <v-btn @click="$vuetify.goTo('#providers', options)" flat>Our Providers</v-btn>
-        <v-btn @click="$vuetify.goTo('#contact', options)" flat>Contact Info</v-btn>
-        <v-btn flat>Therapist Login</v-btn>
-      </v-toolbar-items>
-
-      <v-toolbar-items class="hidden-md-and-up">
-        <v-btn icon>
-          <v-icon>menu</v-icon>
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+    <toolbar :items="toolbarItems" :title="title">
+    </toolbar>
 
     <v-content>
       <section id="home">
-        <v-parallax src="static/zen_garden_01.jpg" height="600">
+        <v-parallax src="static/zen_garden.jpg" height="600">
           <v-layout
             column
             align-center
@@ -36,7 +15,6 @@
           >
 
             <h1 class="white--text mb-2 display-2 logo-font">The Wise Way Counseling</h1>
-            <!-- <h1 class="white--text mb-2 display-2 text-xs-center logo-font-6">The Wise Way Counseling</h1> -->
             <h1 class="white--text mb-2 display-1">Call {{ contactNumber }} to schedule an appointment!</h1>
           </v-layout>
         </v-parallax>
@@ -55,11 +33,11 @@
                 <v-flex xs12 md10 offset-md1>
                   <v-card class="elevation-0 transparent">
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">About Us</div>
+                      <div class="text-xs-center display-1 section-header">About Us</div>
                     </v-card-title>
 
                     <v-card-text class="text-xs-center pb-0">
-                      <img src="static/logo.jpg" alt="The Wise Way Counseling" height="300">
+                      <img src="static/logo.jpg" alt="The Wise Way Counseling" :height="logoSize">
                     </v-card-text>
 
                     <v-card-text>
@@ -98,7 +76,7 @@
         >
           <v-flex xs12 sm4 class="my-3 pt-4">
             <div class="text-xs-center">
-              <h2 class="headline">Services Offered</h2>
+              <h2 class="display-1 section-header">Services Offered</h2>
             </div>
           </v-flex>
 
@@ -114,10 +92,12 @@
                       <div class="headline text-xs-center">Individual Counseling</div>
                     </v-card-title>
                     <v-card-text class="card-services">
-                      Individual Counseling is provided to consumers 3 years of age or older to address needs in multiple domains such as anxiety, 
-                      anger, behavior, trauma, depression, stress, divorce, abuse, death, grief, as well as much more. Individuals will gain a 
-                      better understanding of how to cope with a variety of emotions and feelings relating to these areas. Individual therapy is 
-                      offered 1-2 times per week, based on a needs assessment. 
+                      <p>
+                        Individual Counseling is provided to consumers 3 years of age or older to address needs in multiple domains such as anxiety, 
+                        anger, behavior, trauma, depression, stress, divorce, abuse, death, grief, as well as much more. Individuals will gain a 
+                        better understanding of how to cope with a variety of emotions and feelings relating to these areas. Individual therapy is 
+                        offered 1-2 times per week, based on a needs assessment.
+                      </p>
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -131,10 +111,12 @@
                       <div class="headline">Family Counseling</div>
                     </v-card-title>
                     <v-card-text class="card-services">
-                      Family Counseling is provided to consumers of all ages in need of constructing a more functional family system and to address 
-                      a multitude of needs relating to various family dynamics. Consumers participating in family counseling will gain a better 
-                      understanding of how working together can help improve everyday living, enhancing the quality of life. This service is offered 
-                      1-2 times per week, based on a needs assessment. 
+                      <p>
+                        Family Counseling is provided to consumers of all ages in need of constructing a more functional family system and to address 
+                        a multitude of needs relating to various family dynamics. Consumers participating in family counseling will gain a better 
+                        understanding of how working together can help improve everyday living, enhancing the quality of life. This service is offered 
+                        1-2 times per week, based on a needs assessment.
+                      </p>
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -148,9 +130,11 @@
                       <div class="headline text-xs-center">Marriage Counseling</div>
                     </v-card-title>
                     <v-card-text class="card-services">
-                      Marriage Counseling is provided to consumers experiencing difficulties or concerns within their marriage, affecting various areas 
-                      of life. Services will help couples recognize and resolve conflicts, improving their relationships. Pre-marital counseling services 
-                      are also provided to consumers at The Wise Way Counseling.
+                      <p>
+                        Marriage Counseling is provided to consumers experiencing difficulties or concerns within their marriage, affecting various areas 
+                        of life. Services will help couples recognize and resolve conflicts, improving their relationships. Pre-marital counseling services 
+                        are also provided to consumers at The Wise Way Counseling.
+                      </p>
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -164,11 +148,13 @@
                       <div class="headline text-xs-center">Group Psychotherapy</div>
                     </v-card-title>
                     <v-card-text class="card-services">
-                      Group psychotherapy is a special form of therapy in which a small number of people meet together under the guidance of a profession-ally 
-                      trained therapist to help them-selves and one another. Group therapy helps people learn about them-selves and improve their interpersonal 
-                      relationships. It addresses feelings of isolation, depression or anxiety. And it helps people make significant changes so they feel better 
-                      about the quality of their lives. Additionally, group therapists can apply the principles of group to other set-tings and situations such 
-                      as businesses, schools and community organizations. 
+                      <p>
+                        Group psychotherapy is a special form of therapy in which a small number of people meet together under the guidance of a profession-ally 
+                        trained therapist to help them-selves and one another. Group therapy helps people learn about them-selves and improve their interpersonal 
+                        relationships. It addresses feelings of isolation, depression or anxiety. And it helps people make significant changes so they feel better 
+                        about the quality of their lives. Additionally, group therapists can apply the principles of group to other set-tings and situations such 
+                        as businesses, schools and community organizations.
+                      </p>
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -179,7 +165,7 @@
 
           <v-flex xs12 sm4 class="my-3">
             <div class="text-xs-center">
-              <h2 class="headline">Additional Services Offered</h2>
+              <h2 class="display-1 section-header">Additional Services Offered</h2>
               <span class="subheading">
                 In addition to services described above, we also offer:
               </span>
@@ -251,7 +237,7 @@
                 <v-flex xs12 md10 offset-md1>
                   <v-card class="elevation-0 transparent">
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Our Providers</div>
+                      <div class="text-xs-center display-1 section-header">Our Providers</div>
                     </v-card-title>
 
                     <v-card-text>
@@ -279,13 +265,13 @@
         <v-footer height="auto">
           <v-card flat tile class="flex">
             <v-card-title class="red lighten-2 white--text">
-              <strong class="subheading">Get connected with us on social networks!</strong>
+              <strong class="subheading">Get connected with us on social media!</strong>
 
               <v-spacer></v-spacer>
 
               <v-btn
                 v-for="icon in icons"
-                :key="icon"
+                :key="icon.key"
                 icon
                 dark
                 class="mx-3"
@@ -356,23 +342,41 @@
 <script>
   import Meta from 'mixins/meta'
 
+  import Toolbar from 'components/Toolbar'
+
   export default {
     mixins: [Meta],
 
+    components: {
+      Toolbar
+    },
+
     data () {
       return {
-        options: {
-          duration: 300,
-          offset: -64,
-          easing: 'easeInOutCubic'
-        },
         miniVariant: false,
         right: true,
         rightDrawer: false,
         title: 'The Wise Way Counseling',
         contactNumber: '405-821-6447',
-        bg1: true,
-        icons: [ { icon: 'fab fa-facebook', url: 'http://www.facebook.com' } ]
+        icons: [ { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' } ],
+        toolbarItems: [
+          { key: 1, href: 'home', title: 'Home' },
+          { key: 2, href: 'about', title: 'About' },
+          { key: 3, href: 'services', title: 'Services Offered' },
+          { key: 4, href: 'providers', title: 'Our Providers' },
+          { key: 5, href: 'contact', title: 'Contact' },
+          { key: 6, href: null, title: 'Therapist Login' }
+        ]
+      }
+    },
+
+    computed: {
+      logoSize() {
+        if (!this.$vuetify.breakpoint.xsOnly) {
+          return 300
+        }
+
+          return 175
       }
     },
 
@@ -394,5 +398,9 @@
 
   .logo-font {
     font-family: 'Courgette', cursive;
+  }
+
+  .section-header {
+    font-family: 'Changa One', cursive;
   }
 </style>
