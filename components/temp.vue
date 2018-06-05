@@ -1,22 +1,12 @@
 <template>
-  <v-layout v-resize="onResize">
-    <v-navigation-drawer
+  <v-layout>
+    <!-- <v-navigation-drawer
       v-model="drawer"
       temporary
       app
     >
-      <v-list class="pt-0" dense v-for="item in items" :key="item.key">
-        <v-list-tile
-          v-if="item.href && (!item.auth || (item.auth == true && loggedIn))"
-          @click="$vuetify.goTo(`#${item.href}`, options)"
-          :class="{'red--text text-lighten-3': item.href == activeIndex}"
-          >
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-
-        <v-list-tile v-if="item.auth == false && !loggedIn">
+      <v-list class="pt-0" dense>
+        <v-list-tile v-for="item in items" :key="item.title" @click="">
           <v-list-tile-content>
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
@@ -28,26 +18,25 @@
       app
       fixed
       class="white"
-      height="58"
     >
       <v-toolbar-title v-text="title" class="red--text text-lighten-3 logo-font"></v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-toolbar-items v-for="item in items" :key="item.key" class="hidden-sm-and-down" v-scroll="onScroll">
+      <v-toolbar-items v-for="item in listSection" :key="item.key" class="hidden-sm-and-down" v-scroll="onScroll">
         <v-btn
-          v-if="item.href && (!item.auth || (item.auth == true && loggedIn))"
           flat
           @click="$vuetify.goTo(`#${item.href}`, options)"
           :class="{'red--text text-lighten-3': item.href == activeIndex}"
           >
           {{ item.title }}
         </v-btn>
+      </v-toolbar-items>
 
+      <v-toolbar-items v-if="!loggedIn" v-for="item in listLink" :key="item.key" class="hidden-sm-and-down">
         <v-btn
-          v-if="item.auth == false && !loggedIn"
           flat
-           >
-           {{ item.title }}
+          >
+          {{ item.title }}
         </v-btn>
       </v-toolbar-items>
 
@@ -56,7 +45,7 @@
           <v-icon>menu</v-icon>
         </v-btn>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-toolbar> -->
   </v-layout>
 </template>
 
@@ -82,7 +71,7 @@
         default: () => {
           return {
             duration: 300,
-            offset: -58,
+            offset: -64,
             easing: 'easeInOutCubic'
           }
         }
@@ -96,9 +85,9 @@
 
     data: () => ({
       currentOffset: 0,
-      sizeOffset: 0,
       isBooted: false,
-      listItems: [],
+      listSection: [],
+      listLink: [],
       drawer: false
     }),
 
@@ -111,15 +100,9 @@
 
     computed: {
       activeIndex () {
-        let list = this.listItems.slice().reverse()
-        let index = list.findIndex(item => item.offsetTop - this.sizeOffset < this.currentOffset)
-        let atBottom = 0
-
-        if (this.isBooted && window)
-          atBottom = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight
-        
-        // if (list.length > 0)
-        // console.log(list[0].href)
+        let list = this.listSection.slice().reverse()
+        let index = list.findIndex(item => item.offsetTop - 110 < this.currentOffset)
+        let atBottom = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight
 
         return index > -1 ? (atBottom ? list[0].href : list[index].href) : this.defaultIndex
       }
@@ -144,20 +127,16 @@
             item.offsetTop = target.offsetTop
             item.target = target
             list.push(item)
+          } else {
+            this.listLink.push(item)
           }
         }
 
-        this.listItems = list
+        this.listSection = list
       },
 
       onScroll () {
         this.currentOffset = window.pageYOffset || document.documentElement.offsetTop
-      },
-
-      onResize () {
-        this.genList()
-        this.currentOffset = window.pageYOffset || document.documentElement.offsetTop
-        this.sizeOffset = window.innerWidth <= 960 ? 100 : 60
       }
     }
   }

@@ -4,6 +4,7 @@ const LRU = require('lru-cache')
 const express = require('express')
 const favicon = require('serve-favicon')
 const compression = require('compression')
+
 const resolve = file => path.resolve(__dirname, file)
 const { createBundleRenderer } = require('vue-server-renderer')
 const redirects = require('./router/301.json')
@@ -15,6 +16,7 @@ const serverInfo =
   `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
 
 const app = express()
+const port = process.env.PORT || 8080
 
 const template = fs.readFileSync(resolve('./assets/index.template.html'), 'utf-8')
 
@@ -117,7 +119,7 @@ function render (req, res) {
   }
 
   const context = {
-    title: 'Vuetify', // default title
+    title: 'The Wise Way Counseling', // default title
     url: req.url
   }
   renderer.renderToString(context, (err, html) => {
@@ -138,7 +140,6 @@ app.get('*', isProd ? render : (req, res) => {
   readyPromise.then(() => render(req, res))
 })
 
-const port = process.env.PORT || 8080
 app.listen(port, '0.0.0.0', () => {
   console.log(`server started at localhost:${port}`)
 })

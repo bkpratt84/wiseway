@@ -24,7 +24,7 @@
         <v-layout
           column
           wrap
-          class="my-3"
+          class="my-3 white"
           align-center
         >
           <v-flex xs12>
@@ -228,7 +228,7 @@
         <v-layout
           column
           wrap
-          class="my-3"
+          class="my-3 white"
           align-center
         >
           <v-flex xs12>
@@ -353,19 +353,17 @@
 
     data () {
       return {
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
         title: 'The Wise Way Counseling',
         contactNumber: '405-821-6447',
         icons: [ { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' } ],
         toolbarItems: [
-          { key: 1, href: 'home', title: 'Home' },
-          { key: 2, href: 'about', title: 'About' },
-          { key: 3, href: 'services', title: 'Services Offered' },
-          { key: 4, href: 'providers', title: 'Our Providers' },
-          { key: 5, href: 'contact', title: 'Contact' },
-          { key: 6, href: null, title: 'Therapist Login' }
+          { key: 1, href: 'home', title: 'Home', auth: null },
+          { key: 2, href: 'about', title: 'About', auth: null },
+          { key: 3, href: 'services', title: 'Services Offered', auth: null },
+          { key: 4, href: 'providers', title: 'Our Providers', auth: null },
+          { key: 5, href: 'contact', title: 'Contact', auth: null },
+          { key: 6, href: null, title: 'Therapist Login', auth: false },
+          { key: 7, href: 'therapistdocuments', title: 'Therapist Documents', auth: true }
         ]
       }
     },
