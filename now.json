@@ -1,3 +1,8 @@
 {
-    "alias": "www.thewisewaycounseling.com"
+    "alias": "thewisewaycounseling.com",
+    "env": {
+        "SendGrid_API": "@send-grid-api",
+        "Email_Dev": "@email-dev",
+        "Email_Prod": "@email-prod"
+      }
 }

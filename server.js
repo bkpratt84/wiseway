@@ -1,9 +1,11 @@
+require('now-env')
 const fs = require('fs')
 const path = require('path')
 const LRU = require('lru-cache')
 const express = require('express')
 const favicon = require('serve-favicon')
 const compression = require('compression')
+const bodyParser = require('body-parser')
 
 const resolve = file => path.resolve(__dirname, file)
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -135,6 +137,12 @@ function render (req, res) {
     }
   })
 }
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+const routes = require('./api/routes/sendMail');
+app.use('/api', routes);
 
 app.get('*', isProd ? render : (req, res) => {
   readyPromise.then(() => render(req, res))

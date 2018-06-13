@@ -1,7 +1,22 @@
 <template>
   <v-app>
-    <toolbar :items="toolbarItems" :title="title">
-    </toolbar>
+    <v-snackbar
+      v-model="notification"
+      :success="notificationColor === 'success'"
+      :info="notificationColor === 'info'"
+      :warning="notificationColor === 'warning'"
+      :error="notificationColor === 'error'"
+      bottom
+      multi-line
+    >
+      {{ notificationText }}
+      <v-btn dark flat @click.native="notification = false">Close</v-btn>    
+    </v-snackbar>
+
+    <toolbar
+      :title="title"
+      :loggedIn="vIsLoggedIn"
+    ></toolbar>
 
     <v-content>
       <section id="home">
@@ -261,91 +276,319 @@
         </v-layout>
       </section>
 
-      <section id="contact">
-        <v-footer height="auto">
-          <v-card flat tile class="flex">
-            <v-card-title class="red lighten-2 white--text">
-              <strong class="subheading">Get connected with us on social media!</strong>
+      <section id="documents">
+        <v-layout
+          column
+          wrap
+          class="grey lighten-2"
+          align-center
+        >
+          <v-flex xs12>
+            <v-container grid-list-xl class="pt-1">
+              <v-layout row wrap align-center>
+                <v-flex xs12 md10 offset-md1>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="text-xs-center display-1 section-header">Documents</div>
+                    </v-card-title>
 
-              <v-spacer></v-spacer>
-
-              <v-btn
-                v-for="icon in icons"
-                :key="icon.key"
-                icon
-                dark
-                class="mx-3"
-                :href="icon.url"
-                target="_blank"
-              >
-                <v-icon size="24px">{{ icon.icon }}</v-icon>
-              </v-btn>
-            </v-card-title>
-
-            <v-card-text class="grey lighten-3">
-              <v-layout wrap>
-                <v-flex xs12 sm4 class="my-3">
-                  <v-flex layout column>
-                    <span class="body-2">CONTACT</span>
-
-                    <div>
-                      <v-icon size="18px" class="mr-3" color="red lighten-2">fas fa-envelope</v-icon>
-                      emily@thewisewaycounseling.com
-                    </div>
-                    <div>
-                      <v-icon size="18px" class="mr-3" color="red lighten-2">fas fa-phone</v-icon>
-                      {{ contactNumber }}
-                    </div>
-                    <div>
-                      <v-icon size="18px" class="mr-3" color="grey lighten-3">fas fa-phone</v-icon>
-                      Call to schedule an appointment.
-                    </div>
-                  </v-flex>
-                </v-flex>
-
-                <v-flex xs12 sm4 class="my-3">
-                  <v-flex layout column>
-                    <span class="body-2">ADDRESS</span>
-
-                    <div>
-                      <v-icon size="18px" class="mr-3" color="red lighten-2">fas fa-map-marker-alt</v-icon>
-                      6801 South Western Avenue
-                    </div>
-                    <div>
-                      <v-icon size="18px" class="mr-3" color="grey lighten-3">fas fa-map-marker-alt</v-icon>
-                      Suite 203 & 205
-                    </div>
-                    <div>
-                      <v-icon size="18px" class="mr-3" color="grey lighten-3">fas fa-map-marker-alt</v-icon>
-                      Oklahoma City, Oklahoma 73139
-                    </div>
-                  </v-flex>
-                </v-flex>
-
-                <v-flex xs12 mt-2>
-                  <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1367.6874301262965!2d-97.53190458987032!3d35.3976766274836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b213f36751c3bd%3A0x16ebd0c5507ca43e!2s6801+S+Western+Ave%2C+Oklahoma+City%2C+OK+73139!5e0!3m2!1sen!2sus!4v1525307246546" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <v-card-text>
+                      <div class="subheading">
+                        docs
+                      </div>
+                    </v-card-text>
+                  </v-card>
                 </v-flex>
               </v-layout>
-            </v-card-text>
-
-            <v-card-actions class="red lighten-2 justify-center">
-              &copy;2018 — <strong>{{ title }}</strong>
-            </v-card-actions>
-          </v-card>
-        </v-footer>
+            </v-container>
+          </v-flex>
+        </v-layout>
       </section>
 
+      <section id="contact">
+        <v-layout>
+          <v-flex>
+            <v-card flat tile class="flex">
+              <v-card-title class="red lighten-2 white--text">
+                <strong class="subheading">Get connected with us on social networks!</strong>
+                <v-spacer></v-spacer>
+                <v-btn
+                  v-for="icon in icons"
+                  :key="icon.key"
+                  icon
+                  dark
+                  class="mx-3"
+                  :href="icon.url"
+                  target="_blank"
+                >
+                  <v-icon size="24px">{{ icon.icon }}</v-icon>
+                </v-btn>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+        </v-layout>
+
+        <v-layout row wrap>
+          <v-flex xs12 sm6 class="grey lighten-3">
+            <v-card flat tile>
+              <v-list class="grey lighten-3">
+                <v-list-tile>
+                  <v-list-tile-action>
+                    <span class="body-2">CONTACT</span>
+                  </v-list-tile-action>
+                </v-list-tile>
+
+                <v-list-tile>
+                  <v-list-tile-action class="justify-center">
+                    <v-icon color="red lighten-2">fas fa-envelope</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>emily@thewisewaycounseling.com</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile>
+                  <v-list-tile-action class="justify-center">
+                    <v-icon color="red lighten-2">fas fa-phone</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{ contactNumber }}</v-list-tile-title>
+                    <v-list-tile-sub-title>Call to schedule an appointment.</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile @click="dialog = true">
+                  <v-list-tile-action class="justify-center">
+                    <v-icon color="red lighten-2">fas fa-question</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Have a question?</v-list-tile-title>
+                    <v-list-tile-sub-title>Click here to send a message.</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-card>
+          </v-flex>
+
+          <v-flex xs12 sm6>
+            <v-card flat tile>
+              <v-list class="grey lighten-3">
+                <v-list-tile>
+                  <v-list-tile-action>
+                    <span class="body-2">ADDRESS</span>
+                  </v-list-tile-action>
+                </v-list-tile>
+
+                <v-list-tile>
+                  <v-list-tile-action class="justify-center">
+                    <v-icon color="red lighten-2">fas fa-map-marker-alt</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>6801 South Western Avenue</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile>
+                  <v-list-tile-action></v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Suite 203 & 205</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile>
+                  <v-list-tile-action></v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Oklahoma City, Oklahoma 73139</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-card>
+          </v-flex>
+        </v-layout>
+
+        <v-layout row wrap>
+          <v-flex xs12 class="grey lighten-3">
+            <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1367.6874301262965!2d-97.53190458987032!3d35.3976766274836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b213f36751c3bd%3A0x16ebd0c5507ca43e!2s6801+S+Western+Ave%2C+Oklahoma+City%2C+OK+73139!5e0!3m2!1sen!2sus!4v1525307246546" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </v-flex>
+        </v-layout>
+      </section>
+
+      <v-footer height="auto" class="red lighten-2">
+        <v-layout row wrap justify-center>
+          <v-flex xs12 py-3 text-xs-center white--text>
+            &copy;2018 — <strong>{{ title }}</strong>
+          </v-flex>
+        </v-layout>
+      </v-footer>
     </v-content>
+
+    <v-dialog
+      v-model="dialog"
+      :fullscreen="fullscreen"
+      max-width="500px"
+    >
+      <v-card>
+        <v-card-title class="red lighten-2 white--text">
+          <span class="headline">Contact Form</span><small>&nbsp;&nbsp;*indicates required field</small>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field
+                  label="Name"
+                  required
+                  v-model="form.name"
+                  prepend-icon="fas fa-user"
+                  color="red lighten-2"
+                  :error="$v.form.name.$error"
+                  :error-messages="($v.form.name.$dirty && !$v.form.name.required) ? 'Name Required.' : []"
+                  @input="$v.form.name.$touch()"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  label="Phone"
+                  required
+                  v-model="form.phone"
+                  prepend-icon="fas fa-phone"
+                  color="red lighten-2"
+                  mask="phone"
+                  :error="$v.form.phone.$error"
+                  :error-messages="($v.form.phone.$dirty && !$v.form.phone.required) ? 'Name Required.'
+                    :($v.form.phone.$dirty && !$v.form.phone.minLength) ? 'Invalid phone number.'
+                    : []"
+                  @input="$v.form.phone.$touch()"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  label="Email"
+                  required
+                  v-model="form.email"
+                  prepend-icon="fas fa-envelope"
+                  color="red lighten-2"
+                  :error="$v.form.email.$error"
+                  :error-messages="($v.form.email.$dirty && !$v.form.email.required) ? 'Email Required.'
+                    :($v.form.email.$dirty && !$v.form.email.email) ? 'Invalid email address.'
+                    : []"
+                  @input="$v.form.email.$touch()"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  label="Primary Insurance"
+                  required
+                  v-model="form.insurance"
+                  prepend-icon="fas fa-ambulance"
+                  color="red lighten-2"
+                  :error="$v.form.insurance.$error"
+                  :error-messages="($v.form.insurance.$dirty && !$v.form.insurance.required) ? 'Field Required. Type N/A if this does not apply.' : []"
+                  @input="$v.form.insurance.$touch()"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  label="Message"
+                  required
+                  textarea
+                  v-model="form.message"
+                  color="red lighten-2"
+                  :error="$v.form.message.$error"
+                  :error-messages="($v.form.message.$dirty && !$v.form.message.required) ? 'Name Required.' : []"
+                  @input="$v.form.message.$touch()"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <p class="red--text">{{ nonEmergencyText }}</p>
+
+                <v-checkbox
+                  :label="checkboxLabel"
+                  v-model="form.checkbox"
+                  color="red lighten-2"
+                  required
+                  :error="$v.form.checkbox.$error"
+                  :error-messages="($v.form.checkbox.$dirty && !$v.form.checkbox.mustBeTrue) ? 'Must agree to continue.' : []"
+                  @change="$v.form.checkbox.$touch()"
+                ></v-checkbox>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" @click.native="clearDialog">Close</v-btn>
+          <v-btn color="blue darken-1" @click.native="submitDialog" :disabled="$v.form.$invalid">Send</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog
+      v-model="loginDialog"
+      :fullscreen="fullscreen"
+      max-width="500px"
+    >
+      <v-card>
+        <v-card-title class="red lighten-2 white--text">
+          <span class="headline">Login Form</span><small>&nbsp;&nbsp;*indicates required field</small>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field
+                  label="Email"
+                  required
+                  v-model="loginForm.email"
+                  prepend-icon="fas fa-envelope"
+                  color="red lighten-2"
+                  :error="$v.loginForm.email.$error"
+                  :error-messages="($v.loginForm.email.$dirty && !$v.loginForm.email.required) ? 'Email Required.'
+                    :($v.loginForm.email.$dirty && !$v.loginForm.email.email) ? 'Invalid email address.'
+                    : []"
+                  @input="$v.loginForm.email.$touch()"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
+                  label="Password"
+                  type="password"
+                  required
+                  v-model="loginForm.password"
+                  prepend-icon="fas fa-phone"
+                  color="red lighten-2"
+                  :error="$v.loginForm.password.$error"
+                  :error-messages="($v.loginForm.password.$dirty && !$v.loginForm.password.required) ? 'Password Required.' : []"
+                  @input="$v.loginForm.password.$touch()"
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" @click.native="clearLoginDialog">Close</v-btn>
+          <v-btn color="blue darken-1" @click.native="submitLoginDialog" :disabled="$v.loginForm.$invalid">Login</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
   import Meta from 'mixins/meta'
-
+  import SnackbarQueue from 'mixins/snackbarQueue'
   import Toolbar from 'components/Toolbar'
+  import { required, email, minLength } from 'vuelidate/lib/validators'
+  import { mapActions, mapGetters } from 'vuex'
+
+  const mustBeTrue = (value) => value == true
 
   export default {
-    mixins: [Meta],
+    mixins: [
+      Meta,
+      SnackbarQueue
+    ],
 
     components: {
       Toolbar
@@ -353,33 +596,152 @@
 
     data () {
       return {
+        checkboxLabel: 'I acknowledge that this is not an emergency.',
+        nonEmergencyText: 'This is not an emergency/crisis contact form. If you need emergency help, dial 911 or proceed to the nearest emergency room.',
+        dialog: false,
+        form: {
+          name: '',
+          phone: '',
+          email: '',
+          insurance: '',
+          message: '',
+          checkbox: false
+        },
+        loginForm: {
+          email: '',
+          password: ''
+        },
         title: 'The Wise Way Counseling',
         contactNumber: '405-821-6447',
-        icons: [ { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' } ],
-        toolbarItems: [
-          { key: 1, href: 'home', title: 'Home', auth: null },
-          { key: 2, href: 'about', title: 'About', auth: null },
-          { key: 3, href: 'services', title: 'Services Offered', auth: null },
-          { key: 4, href: 'providers', title: 'Our Providers', auth: null },
-          { key: 5, href: 'contact', title: 'Contact', auth: null },
-          { key: 6, href: null, title: 'Therapist Login', auth: false },
-          { key: 7, href: 'therapistdocuments', title: 'Therapist Documents', auth: true }
-        ]
+        icons: [ { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' } ]
       }
     },
 
+    validations: {
+      form: {
+        name: {
+          required
+        },
+        phone: {
+          required,
+          minLength: minLength(10)
+        },
+        email: {
+          required,
+          email
+        },
+        insurance: {
+          required
+        },
+        message: {
+          required
+        },
+        checkbox: {
+          mustBeTrue
+        }
+      },
+      
+      loginForm: {
+        email: {
+          required,
+          email
+        },
+        password: {
+          required
+        }
+      }
+    },
+
+    watch: {
+      
+    },
+
     computed: {
+      loginDialog: {
+        get () { return this.$store.state.store.loginDialog },
+        set (value) { this.vLoginDialog(value) }
+      },
+
       logoSize() {
         if (!this.$vuetify.breakpoint.xsOnly) {
           return 300
         }
+        
+        return 175
+      },
 
-          return 175
-      }
+      fullscreen() {
+        if (this.$vuetify.breakpoint.xsOnly) {
+          return true
+        }
+
+        return false
+      },
+
+      ...mapGetters({
+          vIsLoggedIn: 'isLoggedIn'
+      })
     },
 
     methods: {
+      clearDialog() {
+        this.form.name = ''
+        this.form.phone = ''
+        this.form.email = ''
+        this.form.insurance = ''
+        this.form.message = ''
+        this.form.checkbox = false
+        this.dialog = false
+      },
 
+      submitDialog() {
+        let params = {
+          name: this.form.name,
+          phone: this.form.phone,
+          email: this.form.email,
+          insurance: this.form.insurance,
+          message: this.form.message
+        }
+        
+        this.$http.post('/api/sendmail', params)
+        .then(response => {
+            if (response.status === 200) {
+              this.clearDialog()
+              this.addNotification('Thank you! Message sent.', 'success')
+
+              return
+            }
+        }).catch(error => {
+          this.clearDialog()
+          this.addNotification('Failed to send message. Please try again later!', 'error')
+        })
+      },
+
+      ...mapActions({
+          vLoginDialog: 'setLoginDialog',
+          vSetUser: 'setUser'
+      }),
+
+      clearLoginDialog() {
+        this.loginForm.email = ''
+        this.loginForm.password = ''
+        this.vLoginDialog(false)
+      },
+
+      submitLoginDialog() {
+        this.$firebase.auth().signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password)
+        .then(user => {
+          this.vSetUser(user)
+          this.clearLoginDialog()
+          this.addNotification('Successfully signed in.', 'success')
+        },
+        (error) => {
+          this.addNotification('Invalid login, try again!', 'error')
+        }).catch(error => {
+          this.clearLoginDialog()
+          this.addNotification('Sorry, unable to reach authorization service. Please try again later!', 'error')
+        })
+      }
     }
   }
 </script>

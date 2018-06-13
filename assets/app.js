@@ -2,6 +2,9 @@ import 'babel-polyfill'
 
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import Vuelidate from 'vuelidate'
+import axios from 'axios'
+
 import 'vuetify/dist/vuetify.css'
 import App from './App.vue'
 import Components from 'components/_index'
@@ -9,6 +12,12 @@ import Components from 'components/_index'
 import { createStore } from 'store/index'
 import { createRouter } from 'router/index'
 import { sync } from 'vuex-router-sync'
+
+import { firebaseApp, auth } from 'lib/firebase'
+
+Vue.use(Vuelidate)
+Vue.prototype.$http = axios
+Vue.prototype.$firebase = firebaseApp
 
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',
@@ -43,7 +52,7 @@ export function createApp (ssrContext) {
     store,
     ssrContext,
     render: h => h(App)
-  })
+  }) 
 
   // expose the app, the router and the store.
   // note we are not mounting the app here, since bootstrapping will be

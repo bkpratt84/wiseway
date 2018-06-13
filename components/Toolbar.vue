@@ -16,7 +16,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile v-if="item.auth == false && !loggedIn">
+        <v-list-tile v-if="item.auth == false && !loggedIn" @click="showLoginDialog">
           <v-list-tile-content>
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
@@ -29,25 +29,29 @@
       fixed
       class="white"
       height="58"
+      v-scroll="onScroll"
     >
       <v-toolbar-title v-text="title" class="red--text text-lighten-3 logo-font"></v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-toolbar-items v-for="item in items" :key="item.key" class="hidden-sm-and-down" v-scroll="onScroll">
+      <v-toolbar-items v-for="item in items" :key="item.key" class="hidden-sm-and-down">
         <v-btn
           v-if="item.href && (!item.auth || (item.auth == true && loggedIn))"
           flat
           @click="$vuetify.goTo(`#${item.href}`, options)"
           :class="{'red--text text-lighten-3': item.href == activeIndex}"
-          >
+        >
           {{ item.title }}
         </v-btn>
+      </v-toolbar-items>
 
+      <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
-          v-if="item.auth == false && !loggedIn"
+          v-if="!loggedIn"
           flat
-           >
-           {{ item.title }}
+          @click="showLoginDialog"
+        >
+           Therapist Login
         </v-btn>
       </v-toolbar-items>
 
@@ -61,13 +65,10 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
     props: {
-      items: {
-        type: Array,
-        default: () => ([])
-      },
-
       title: {
         type: String
       },
@@ -99,7 +100,16 @@
       sizeOffset: 0,
       isBooted: false,
       listItems: [],
-      drawer: false
+      drawer: false,
+      items: [
+        { key: 1, href: 'home', title: 'Home', auth: null },
+        { key: 2, href: 'about', title: 'About', auth: null },
+        { key: 3, href: 'services', title: 'Services Offered', auth: null },
+        { key: 4, href: 'providers', title: 'Our Providers', auth: null },
+        { key: 5, href: 'documents', title: 'Therapist Documents', auth: true },
+        { key: 6, href: 'contact', title: 'Contact', auth: null },
+        { key: 7, href: null, title: 'Therapist Login', auth: false }
+      ]
     }),
 
     watch: {
@@ -125,14 +135,18 @@
       }
     },
 
-    mounted () {
+    mounted() {
       setTimeout(() => {
         this.isBooted = true
       }, 200)
     },
 
     methods: {
-      genList () {
+      ...mapActions({
+          sShowLoginDialog: 'setLoginDialog'
+      }),
+
+      genList() {
         let list = []
 
         for (let item of this.items) {
@@ -150,14 +164,18 @@
         this.listItems = list
       },
 
-      onScroll () {
+      onScroll() {
         this.currentOffset = window.pageYOffset || document.documentElement.offsetTop
       },
 
-      onResize () {
+      onResize() {
         this.genList()
         this.currentOffset = window.pageYOffset || document.documentElement.offsetTop
         this.sizeOffset = window.innerWidth <= 960 ? 100 : 60
+      },
+
+      showLoginDialog() {
+        this.sShowLoginDialog(true)
       }
     }
   }
