@@ -98,13 +98,13 @@
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <v-flex xs12 sm6>
+                <v-flex xs12 md6>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
                       <v-icon x-large color="red lighten-2">fa-user</v-icon>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Individual Counseling</div>
+                      <div class="headline">Individual Counseling</div>
                     </v-card-title>
                     <v-card-text class="card-services">
                       <p>
@@ -276,7 +276,7 @@
         </v-layout>
       </section>
 
-      <section id="documents">
+      <section id="documents" v-if="!vIsLoggedIn">
         <v-layout
           column
           wrap
@@ -284,23 +284,50 @@
           align-center
         >
           <v-flex xs12>
-            <v-container grid-list-xl class="pt-1">
-              <v-layout row wrap align-center>
-                <v-flex xs12 md10 offset-md1>
+              <v-layout row wrap align-center mt-3>
+                <v-flex xs12>
                   <v-card class="elevation-0 transparent">
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="text-xs-center display-1 section-header">Documents</div>
+                      <div class="text-xs-center display-1 section-header">Therapist Documents</div>
                     </v-card-title>
 
-                    <v-card-text>
-                      <div class="subheading">
-                        docs
-                      </div>
-                    </v-card-text>
                   </v-card>
                 </v-flex>
               </v-layout>
-            </v-container>
+          </v-flex>
+
+          <v-flex>
+            <v-card class="mb-5 mt-3">
+              <v-card-title primary-title class="layout justify-center">
+                <v-text-field
+                  v-model="search"
+                  append-icon="search"
+                  label="Search"
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-card-title>
+
+              <v-data-table
+                :headers="headers"
+                :items="urls"
+                :search="search"
+                hide-actions
+              >
+                <template slot="items" slot-scope="props">
+                  <td class="text-xs-left">{{ props.item.text }}</td>
+                  <td class="text-xs-left">{{ props.item.description }}</td>
+                  <td class="justify-center layout px-0">
+                    <v-btn icon class="mx-0" @click="openURL(props.item.path)">
+                      <v-icon color="red lighten-2">fa-file</v-icon>
+                    </v-btn>
+                  </td>
+                </template>
+                <v-alert slot="no-results" :value="true" color="error" icon="warning">
+                  Your search for "{{ search }}" found no results.
+                </v-alert>
+              </v-data-table>
+            </v-card>
           </v-flex>
         </v-layout>
       </section>
@@ -613,7 +640,19 @@
         },
         title: 'The Wise Way Counseling',
         contactNumber: '405-821-6447',
-        icons: [ { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' } ]
+        icons: [
+          { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' }
+        ],
+        urls: [
+          { key: 1, path: '/static/documents/test.pdf', text: 'Test1 ereettsfsdfdssfsfsdfs', description: 'This is used to do some stuff okaysdfsdf???' },
+          { key: 2, path: '/static/documents/test.pdf', text: 'Test2', description: 'Two' }
+        ],
+        search: '',
+        headers: [
+          { text: 'Document', value: 'text', align: 'left' },
+          { text: 'Description', value: 'description' },
+          { text: 'Actions', value: 'name', sortable: false }
+        ]
       }
     },
 
@@ -741,6 +780,10 @@
           this.clearLoginDialog()
           this.addNotification('Sorry, unable to reach authorization service. Please try again later!', 'error')
         })
+      },
+
+      openURL(url) {
+        window.open(url)
       }
     }
   }
@@ -753,7 +796,7 @@
   }
 
   .card-services {
-    min-height: 200px;
+    min-height: 110px;
   }
 
   .logo-font {

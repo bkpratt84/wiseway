@@ -3,6 +3,7 @@ const merge = require('webpack-merge')
 const base = require('./webpack.base.config')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+require('now-env')
 
 const config = merge(base, {
   entry: {
@@ -12,7 +13,10 @@ const config = merge(base, {
     // strip dev-only code in Vue source
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-      'process.env.VUE_ENV': '"client"'
+      'process.env.VUE_ENV': '"client"',
+      'process.env.Firebase_Key': JSON.stringify(process.env.Firebase_Key || 'AIzaSyDtSOID9xg-yfKK_Vlo_pBZC5ckKG9rzJ4'),
+      'process.env.Firebase_AuthDomain': JSON.stringify(process.env.Firebase_AuthDomain),
+      'process.env.Firebase_ProjectID': JSON.stringify(process.env.Firebase_ProjectID)
     }),
     // extract vendor chunks for better caching
     new webpack.optimize.CommonsChunkPlugin({
