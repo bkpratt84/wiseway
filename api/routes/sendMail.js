@@ -5,7 +5,7 @@ const sgMail = require('@sendgrid/mail')
 router.post('/sendmail', function (req, res) {
     sgMail.setApiKey(process.env.SendGrid_API)
 
-    let toEmail = process.env.NODE_ENV === 'production' ? process.env.Email_Prod : process.env.Email_Dev
+    let toEmail = process.env.Email
     
     let message = `<p><strong>Name: </strong> ${req.body.name}<p>
                 <p><strong>Phone: </strong> ${req.body.phone}<p>
