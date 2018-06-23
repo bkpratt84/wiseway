@@ -11,7 +11,7 @@
     "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.config.js --progress --hide-modules",
     "scale-down": "now scale thewisewaycounseling.com 0 --token=$NOW_TOKEN",
     "deploy": "now --token=$NOW_TOKEN --npm",
-    "alias": "now alias --token=$NOW_TOKEN",
+    "alias": "now alias rm thewisewaycounseling.com --token=$NOW_TOKEN && now alias --token=$NOW_TOKEN",
     "scale-up": "now scale thewisewaycounseling.com 5 --token=$NOW_TOKEN",
     "unalias": "now rm wiseway --safe --yes --token=$NOW_TOKEN"
   },
