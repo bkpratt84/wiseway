@@ -14,7 +14,6 @@
     "alias": "now alias --token=$NOW_TOKEN",
     "scale-up": "now scale thewisewaycounseling.com 5 --token=$NOW_TOKEN",
     "unalias": "now rm wiseway --safe --yes --token=$NOW_TOKEN"
-
   },
   "engines": {
     "node": ">=7.0",
