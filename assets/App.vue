@@ -276,7 +276,7 @@
         </v-layout>
       </section>
 
-      <section id="documents" v-if="!vIsLoggedIn">
+      <section id="documents" v-if="vIsLoggedIn">
         <v-layout
           column
           wrap
